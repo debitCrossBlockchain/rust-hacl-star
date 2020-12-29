@@ -28,7 +28,7 @@
 
 
 
-typedef  unsigned __int128 FStar_UInt128_t;
+
 typedef uint64_t Hacl_Bignum_Constants_limb;
 
 typedef FStar_UInt128_t Hacl_Bignum_Constants_wide;
