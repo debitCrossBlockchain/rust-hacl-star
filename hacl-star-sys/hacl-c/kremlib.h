@@ -1,30 +1,8 @@
-/* MIT License
- *
- * Copyright (c) 2016-2017 INRIA and Microsoft Corporation
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
 #ifndef __KREMLIB_H
 #define __KREMLIB_H
 
 #include "kremlib_base.h"
-#include "kremlib_embedded.h"
+
 
 /* For tests only: we might need this function to be forward-declared, because
  * the dependency on WasmSupport appears very late, after SimplifyWasm, and
@@ -435,7 +413,7 @@ inline static int16_t FStar_UInt16_v(int16_t x) { return x; }
 inline static int32_t FStar_UInt32_v(int32_t x) { return x; }
 inline static int64_t FStar_UInt64_v(int64_t x) { return x; }
 
-
+#ifdef UINT128
 /* Platform-specific 128-bit arithmetic. These are static functions in a header,
  * so that each translation unit gets its own copy and the C compiler can
  * optimize. */
@@ -503,6 +481,7 @@ static inline uint128_t FStar_UInt128_gte_mask(uint128_t x, uint128_t y) {
 
 
 #  else /* !defined(KRML_NOUINT128) */
+
   /* This is a bad circular dependency... should fix it properly. */
 #    include "FStar.h"
 
@@ -565,4 +544,5 @@ static inline void store128_be(uint8_t *b, uint128_t n) { store128_be_(b, &n); }
 
 #    endif /* KRML_STRUCT_PASSING */
 #  endif   /* KRML_UINT128 */
+# endif    /* UINT128 */
 #endif     /* __KREMLIB_H */

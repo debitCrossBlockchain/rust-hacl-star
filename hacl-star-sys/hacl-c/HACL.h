@@ -1,6 +1,6 @@
 /* MIT License
  *
- * Copyright (c) 2016-2017 INRIA and Microsoft Corporation
+ * Copyright (c) 2016-2018 INRIA and Microsoft Corporation
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,10 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef __KREMLIB_EMBEDDED_H
-#define __KREMLIB_EMBEDDED_H
 
-#define KRML_HOST_EXIT while
-#define KRML_HOST_PRINTF(Fmt,...) snprintf(NULL, 0, Fmt, __VA_ARGS__);
+#ifndef __HACL_H
+#define __HACL_H
+
+#include "Hacl_Chacha20.h"
+#include "Hacl_Chacha20_Vec128.h"
+#include "Hacl_Curve25519.h"
+#include "Hacl_Ed25519.h"
+#include "Hacl_HMAC_SHA2_256.h"
+#include "Hacl_Salsa20.h"
+#include "Hacl_SHA2_256.h"
+#include "Hacl_SHA2_384.h"
+#include "Hacl_SHA2_512.h"
+#include "Hacl_Policies.h"
+#include "Hacl_Poly1305_64.h"
 
 #endif
